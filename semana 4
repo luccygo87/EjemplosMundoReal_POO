@@ -1,0 +1,114 @@
+class Huesped:
+    def __init__(self, nombre, apellido, dni):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.dni = dni
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}, DNI: {self.dni}"
+
+class Habitacion:
+    def __init__(self, numero, capacidad, precio):
+        self.numero = numero
+        self.capacidad = capacidad
+        self.precio = precio
+        self.reservada = False
+
+    def reservar(self):
+        if not self.reservada:
+            self.reservada = True
+            print(f"Habitación {self.numero} reservada.")
+        else:
+            print(f"Habitación {self.numero} ya está reservada.")
+
+    def cancelar_reserva(self):
+        if self.reservada:
+            self.reservada = False
+            print(f"Reserva de habitación {self.numero} cancelada.")
+        else:
+            print(f"No hay reserva para la habitación {self.numero}.")
+
+    def __str__(self):
+        estado_reserva = "Reservada" if self.reservada else "Disponible"
+        return f"Habitación {self.numero}, Capacidad: {self.capacidad}, Precio: ${self.precio}, Estado: {estado_reserva}"
+
+class Hotel:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.huespedes = []
+        self.habitaciones = []
+
+    def registrar_huesped(self, huesped):
+        self.huespedes.append(huesped)
+        print(f"Huésped registrado: {huesped}")
+
+    def agregar_habitacion(self, habitacion):
+        self.habitaciones.append(habitacion)
+        
+    def mostrar_habitaciones(self):
+        for habitacion in self.habitaciones:
+            print(habitacion)
+
+def main():
+    hotel_name = input("Ingrese el nombre del hotel: ")
+    hotel_principal = Hotel(hotel_name)
+
+    while True:
+        print("\nOpciones:")
+        print("1. Registrar huésped")
+        print("2. Agregar habitación")
+        print("3. Mostrar habitaciones")
+        print("4. Reservar habitación")
+        print("5. Cancelar reserva")
+        print("6. Salir")
+
+        opcion_seleccionada = input("Seleccione una opción: ")
+
+        if opcion_seleccionada == "1":
+            h_nombre_input= input('Ingrese el Nombre del huesped ')
+            h_apellido_input= input('Ingrese el Apellido del huesped ')
+            h_dni_input=input('ingrese el DNI  ')
+            nuevo_huesped=Huesped(h_nombre_input,h_apellido_input,h_dni_input )
+            hotel_principal.registrar_huesped(nuevo_huesped)
+            
+         elif opcion_seleccionada == "2":
+             h_numero=int(input('Numero  ')) 
+             h_capacidad=int(input('Capacidad '))
+             h_precio=float(input ('Precio'))
+             nueva_H=Habitacion (h_numero,h_capacidad,h_precio )
+             hotel_principal.agregar_habitacion(nueva_H)
+ 
+         elif opcion_seleccionado == '3':
+             for i ,habitac in enumerate (hotel_principal.habiataciones ):
+                 prin( i ,habitac )
+         #estamos imprimiendo las habtiaciones 
+         
+          #poner otro elif que se encargue  hacer la reserva 
+
+         elif opcion_seleccionado== '4':
+             id=input( int ("id "))
+             objhabi=hoteles.get(id,None )#aqui estoy intentando recuper un objeto tipo   Habitcion por medio  su id osea en este caso sera su posicio 
+             
+             if objhabi is None :
+                pritn ('no existe esa habitacon')
+                
+                # si existe ese objeto   entonces realizo la opercaionde rsrvsar  
+             else :objhabi .reservar()   
+         
+        
+          #poner otro elif que cancele las reervasd  
+         elif   opcionselecioanad0 =='5':      
+           id=(input(int ("id")))
+           objhaib=hoteles.get(id,None)   
+           
+           if objhabi is None :
+               pritn ("no exsite esa habitacon ")
+                
+              # si existe ese objeto   entonces realizo la opercaionde rsrvsar  
+           else :objhabi.cancelarrs()   
+       
+     
+    
+# invocamos al metodo princpal
+    
+main()
